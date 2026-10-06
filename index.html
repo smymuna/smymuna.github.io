@@ -248,21 +248,23 @@
       </article>
 
       <article class="card featured" data-kind="sde">
-        <div class="head"><span class="badge">Backend · Green software</span><span class="kind">Python · FastAPI</span></div>
+        <div class="head"><span class="badge">Full stack · Green software</span><span class="kind">Python · Next.js</span></div>
         <h3>GridShift: Carbon-Aware Job Scheduler</h3>
         <p class="sub">Shows when and where to run compute jobs on European grids for the lowest CO₂</p>
         <div class="stats">
           <div class="stat"><b>−66%</b><span>CO₂ intensity, shifting in time</span></div>
           <div class="stat"><b>−93%</b><span>shifting in time + location</span></div>
-          <div class="stat"><b>63</b><span>tests · 93% coverage</span></div>
+          <div class="stat"><b>92</b><span>tests across API and web app</span></div>
         </div>
         <ul>
           <li>Uses live grid carbon forecasts from Fraunhofer ISE to choose the lowest-carbon start time and country for a job before its deadline. Figures above are from a 2-hour job on real data (4 Oct 2026)</li>
           <li>Time-weighted window search in O(n log n), checked against brute-force search on hundreds of random cases</li>
-          <li>Async service with a rate-limit-aware client (backoff, Retry-After), TTL cache and request coalescing</li>
+          <li>Interactive Next.js web app: pick countries, job length and deadline, and see the recommendation and a live intensity chart with what-if hover</li>
+          <li>Turborepo monorepo (Python API + Next.js + generated TypeScript client); the frontend is type-checked against the API's OpenAPI schema</li>
+          <li>Async API with request throttling, backoff, a TTL cache with request coalescing, and serving recent data when the provider is down</li>
         </ul>
         <div class="tags">
-          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">asyncio</span><span class="tag">pytest</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span>
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Turborepo</span><span class="tag">Tailwind CSS</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span>
         </div>
         <div class="links">
           <a href="https://github.com/smymuna/gridshift">Source code →</a>
