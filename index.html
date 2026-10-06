@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mymuna Sultana — Software Developer</title>
+<meta name="description" content="Mymuna Sultana: Software Developer (M.S. Computer Science) building backend services, REST APIs and data pipelines, focused on climate and energy data. Relocating to Germany.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1b1b1f;
+    --muted: #5d5d66;
+    --border: #e6e3de;
+    --accent: #3b5bdb;
+    --accent-soft: #edf1fd;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111114;
+      --surface: #19191d;
+      --text: #ececf1;
+      --muted: #a0a0ab;
+      --border: #2a2a31;
+      --accent: #8ea6ff;
+      --accent-soft: #1d2340;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111114;
+    --surface: #19191d;
+    --text: #ececf1;
+    --muted: #a0a0ab;
+    --border: #2a2a31;
+    --accent: #8ea6ff;
+    --accent-soft: #1d2340;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 Inter, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+  nav .brand { font-weight: 700; color: var(--text); }
+  nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  header.hero { padding: 88px 0 56px; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--accent); margin: 0 0 12px; }
+  h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .lede { font-size: 18px; color: var(--muted); max-width: 620px; margin: 0 0 28px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 8px; font-weight: 500; font-size: 15px;
+    border: 1px solid var(--border); color: var(--text); background: var(--surface);
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  :root[data-theme="dark"] .btn.primary { color: #111; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #111; } }
+
+  section { padding: 48px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 13px; font-family: "JetBrains Mono", monospace; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 24px; }
+  .about p { margin: 0 0 14px; max-width: 680px; }
+
+  .projects { display: grid; gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px; box-shadow: var(--shadow);
+  }
+  .card h3 { margin: 0 0 6px; font-size: 19px; }
+  .card .sub { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+  .card ul { margin: 0 0 16px; padding-left: 18px; }
+  .card li { margin-bottom: 4px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tag {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 8px; border-radius: 6px;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; font-weight: 500; }
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .skills h3 { font-size: 15px; margin: 0 0 8px; }
+  .skills p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  .edu .row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; }
+  .edu h3 { margin: 0; font-size: 17px; }
+  .edu .sub { color: var(--muted); margin: 2px 0 0; }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500; color: var(--text);
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 5px 12px; border-radius: 999px; margin-bottom: 20px;
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #2f9e44; }
+  .focus { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 36px; }
+  .focus div { border-left: 2px solid var(--accent); padding: 2px 0 2px 12px; }
+  .focus b { display: block; font-size: 15px; }
+  .focus span { color: var(--muted); font-size: 14px; }
+  .card.featured { border-color: var(--accent); }
+  .badge {
+    display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: .06em; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 4px 0 18px; max-width: 560px; }
+  .stat { background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; }
+  .stat b { display: block; font-size: 22px; line-height: 1.2; color: var(--accent); }
+  .stat span { font-size: 12px; color: var(--muted); }
+
+  .contact p { margin: 0 0 20px; color: var(--muted); max-width: 560px; }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+
+  #theme { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 15px; flex-shrink: 0; }
+
+  @media (max-width: 600px) {
+    nav ul { display: none; }
+    header.hero { padding: 56px 0 40px; }
+    .card { padding: 20px; }
+    .stat { padding: 8px 10px; }
+    .stat b { font-size: 18px; }
+    .stat span { font-size: 11px; line-height: 1.3; display: block; }
+  }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 20px; }
+  .filter {
+    font: inherit; font-size: 13px; font-weight: 500; cursor: pointer;
+    border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+    padding: 5px 12px; border-radius: 999px;
+  }
+  .filter[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  :root[data-theme="dark"] .filter[aria-pressed="true"] { color: #111; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .filter[aria-pressed="true"] { color: #111; } }
+  .card[hidden] { display: none; }
+  .kind { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .card .head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; margin-bottom: 8px; }
+  .card .head .badge { margin: 0; }
+  .subhead { font-size: 15px; font-weight: 600; margin: 32px 0 12px; color: var(--muted); }
+
+  .timeline { display: grid; gap: 28px; }
+  .job .top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2px 16px; align-items: baseline; }
+  .job h3 { margin: 0; font-size: 17px; }
+  .job .org { color: var(--muted); margin: 2px 0 8px; font-size: 15px; }
+  .job .when { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  .job ul { margin: 0; padding-left: 18px; }
+  .job li { margin-bottom: 4px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 14px; margin: 0 0 28px; padding: 0; list-style: none; }
+  .facts li::before { content: "· "; color: var(--accent); }
+  .facts li:first-child::before { content: ""; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">Mymuna Sultana</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="theme" aria-label="Toggle dark mode">◐</button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="pill"><span class="dot"></span>Relocating to Germany · Open to roles across Europe</div>
+    <p class="eyebrow">Software Developer</p>
+    <h1>Mymuna Sultana</h1>
+    <p class="lede">I build backend services, REST APIs and data pipelines in Python on PostgreSQL, and I own features from design through testing, CI/CD and deployment. Most of my recent work is on climate and energy data.</p>
+    <ul class="facts">
+      <li>M.S. Computer Science, George Mason University</li>
+      <li>EU Blue Card eligible</li>
+      <li>Available for interviews in CET</li>
+    </ul>
+    <div class="btns">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn" href="https://github.com/smymuna">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/mymunasultana">LinkedIn</a>
+    </div>
+    <div class="focus">
+      <div><b>Backend &amp; APIs</b><span>Python, FastAPI, Flask, Java</span></div>
+      <div><b>Data engineering</b><span>Pipelines, data quality, PostgreSQL</span></div>
+      <div><b>Climate &amp; energy</b><span>Emissions data, carbon-aware computing</span></div>
+      <div><b>Cloud &amp; DevOps</b><span>AWS, Docker, Kubernetes, CI/CD</span></div>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="filter" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" data-filter="sde" aria-pressed="false">Software development</button>
+      <button class="filter" data-filter="de" aria-pressed="false">Data engineering</button>
+    </div>
+    <div class="projects">
+
+      <article class="card featured" data-kind="sde de">
+        <div class="head"><span class="badge">Backend · Data engineering</span><span class="kind">Python · PostgreSQL</span></div>
+        <h3>Climate Emissions Platform</h3>
+        <p class="sub">Combines three public emissions sources into clean greenhouse gas indicators for 32 European countries</p>
+        <div class="stats">
+          <div class="stat"><b>3</b><span>sources: Eurostat, World Bank, OWID</span></div>
+          <div class="stat"><b>59k</b><span>records validated per run</span></div>
+          <div class="stat"><b>46</b><span>tests, incl. real PostgreSQL</span></div>
+        </div>
+        <ul>
+          <li>Staged pipeline (ingestion → validation → transformation → application-ready views) with a raw landing zone and per-run lineage</li>
+          <li>Reusable data-quality components for missing values, duplicates, unit normalisation and unit-error detection, tuned against real anomalies in Eurostat data</li>
+          <li>PostgreSQL model of countries, sectors, reporting periods and emissions; idempotent COPY + upsert loading with Alembic migrations</li>
+          <li>FastAPI endpoints for per-capita emissions, change since 1990, sector shares and cross-source reconciliation; Docker Compose and CI</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">SQLAlchemy</span><span class="tag">Alembic</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/smymuna/climate-emissions-platform">Source code →</a>
+          <a href="https://github.com/smymuna/climate-emissions-platform/tree/main/docs/adr">Design decisions →</a>
+        </div>
+      </article>
+
+      <article class="card featured" data-kind="sde">
+        <div class="head"><span class="badge">Backend · Green software</span><span class="kind">Python · FastAPI</span></div>
+        <h3>GridShift: Carbon-Aware Job Scheduler</h3>
+        <p class="sub">Shows when and where to run compute jobs on European grids for the lowest CO₂</p>
+        <div class="stats">
+          <div class="stat"><b>−66%</b><span>CO₂ intensity, shifting in time</span></div>
+          <div class="stat"><b>−93%</b><span>shifting in time + location</span></div>
+          <div class="stat"><b>63</b><span>tests · 93% coverage</span></div>
+        </div>
+        <ul>
+          <li>Uses live grid carbon forecasts from Fraunhofer ISE to choose the lowest-carbon start time and country for a job before its deadline. Figures above are from a 2-hour job on real data (4 Oct 2026)</li>
+          <li>Time-weighted window search in O(n log n), checked against brute-force search on hundreds of random cases</li>
+          <li>Async service with a rate-limit-aware client (backoff, Retry-After), TTL cache and request coalescing</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">asyncio</span><span class="tag">pytest</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/smymuna/gridshift">Source code →</a>
+          <a href="https://github.com/smymuna/gridshift/tree/main/docs/adr">Design decisions →</a>
+        </div>
+      </article>
+
+      <article class="card" data-kind="de">
+        <div class="head"><span class="badge">Data engineering · AI</span><span class="kind">Python · LangGraph</span></div>
+        <h3>Agentic AI Data Quality Pipeline</h3>
+        <p class="sub">A multi-agent system that profiles, scores and monitors data warehouse tables</p>
+        <ul>
+          <li>Six LangGraph agents (planner, metadata, metrics, scoring, root-cause analysis, issue) chained into one data quality pipeline</li>
+          <li>Deployed end to end on Azure: containerised Python backend on App Service, run telemetry in PostgreSQL</li>
+          <li>React dashboard for starting runs and viewing scores and root-cause insights; CI/CD with GitHub Actions</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Azure</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/smymuna/agentic-ai">Source code →</a>
+        </div>
+      </article>
+
+      <article class="card" data-kind="sde">
+        <div class="head"><span class="badge">Full stack</span><span class="kind">FastAPI · MongoDB</span></div>
+        <h3>Pet Adoption &amp; Shelter Management System</h3>
+        <p class="sub">A full-stack shelter admin dashboard with analytics</p>
+        <ul>
+          <li>FastAPI + MongoDB backend with CRUD across six collections and automatic OpenAPI docs</li>
+          <li>Bootstrap 5 dashboard with Chart.js visuals for adoption trends and medical visits</li>
+          <li>Skill-based volunteer matching across 18 standardised skill types</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">MongoDB</span><span class="tag">Chart.js</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/smymuna/pet-adoption-system">Source code →</a>
+        </div>
+      </article>
+
+    </div>
+    <p class="subhead">Also: <a href="https://github.com/smymuna/neetcode-submissions">69+ data structures &amp; algorithms solutions</a> in Python, synced from NeetCode.</p>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="job">
+        <div class="top"><h3>Software Developer</h3><span class="when">12/2025 – present</span></div>
+        <p class="org">Mason LIFE Program, George Mason University · Fairfax, VA</p>
+        <ul>
+          <li>Own development of a Python/Flask and PostgreSQL application that centralises course, scheduling, student and program operations</li>
+          <li>Designed the relational data model and consolidated 6 separate Excel trackers into the database</li>
+          <li>Automated recurring workflows with Python and SQL, saving 4–5 hours of manual work per week; built reporting integrations feeding 8 Tableau and Power BI dashboards for 15+ staff</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="top"><h3>Data Engineer Intern</h3><span class="when">08/2025 – 12/2025</span></div>
+        <p class="org">DQLabs · Remote</p>
+        <ul>
+          <li>Developed Python/FastAPI services and REST APIs running 50+ automated validation checks across 20+ datasets</li>
+          <li>Implemented asynchronous processing with RabbitMQ and Amazon SQS; built workflows across AWS S3, RDS and EC2</li>
+          <li>Added automatic retries and alerting that cut repeat failures by about 20% and MTTR by about 35%</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><h3>Programming</h3><p>Python, Java, SQL, JavaScript, TypeScript, React</p></div>
+      <div><h3>Backend</h3><p>FastAPI, Flask, Spring Boot, REST API design, RabbitMQ, Amazon SQS, Kafka</p></div>
+      <div><h3>Data</h3><p>PostgreSQL, MySQL, MongoDB, DynamoDB, data modelling, query optimisation, data quality</p></div>
+      <div><h3>Cloud &amp; DevOps</h3><p>AWS (S3, RDS, EC2, Lambda), Docker, Kubernetes, GitHub Actions</p></div>
+      <div><h3>Testing &amp; practice</h3><p>pytest, unit and integration testing, logging and monitoring, Agile/Scrum</p></div>
+      <div><h3>Languages</h3><p>English (professional working proficiency), German (A1, learning)</p></div>
+    </div>
+  </section>
+
+  <section id="education" class="edu">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="job">
+        <div class="top"><h3>M.S. Computer Science</h3><span class="when">01/2024 – 12/2025</span></div>
+        <p class="org">George Mason University · Fairfax, VA, USA</p>
+        <p class="sub">Database Systems, Distributed Systems, Cloud Computing, Data Structures &amp; Algorithms</p>
+      </div>
+      <div class="job">
+        <div class="top"><h3>B.Tech. Computer Science</h3><span class="when">2017 – 2021</span></div>
+        <p class="org">Kakatiya University · Warangal, India</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>I'm relocating to Germany and looking for software developer and data engineering roles across Europe, especially in climate, energy and data platforms. I'm eligible for the EU Blue Card and available for interviews in CET.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:mymuna.gmu@gmail.com">mymuna.gmu@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/mymunasultana">LinkedIn</a>
+      <a class="btn" href="https://github.com/smymuna">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Mymuna Sultana · Hosted on GitHub Pages</div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById('theme').addEventListener('click', () => {
+    const dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  });
+  const filters = document.querySelectorAll('.filter');
+  filters.forEach(btn => btn.addEventListener('click', () => {
+    filters.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.projects .card').forEach(card => {
+      card.hidden = f !== 'all' && !card.dataset.kind.split(' ').includes(f);
+    });
+  }));
+</script>
+</body>
+</html>
