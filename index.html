@@ -376,6 +376,102 @@
   }
   .product-viz b { display: block; color: var(--text); font-size: 13px; margin-bottom: 4px; }
 
+
+  /* --- Project themes: each card wears the palette of the project it shows --------- */
+  /* The site's components read --accent and --highlight, so a card only overrides those. */
+  .theme-climate   { --accent: #1c5cab; --highlight: #e8f0fb; }  /* its React dashboard */
+  .theme-gridshift { --accent: #0b6e4f; --highlight: #e3f2ec; }  /* its Next.js app */
+  .theme-orbit     { --accent: #4f43dd; --highlight: #eeecfd; }  /* Dagster, its UI */
+  .theme-agentic   { --accent: #2563eb; --highlight: #dbeafe; }  /* its Tailwind blue */
+  .theme-pet       { --accent: #0a58ca; --highlight: #e7f1ff; }  /* its Bootstrap 5 admin */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-climate   { --accent: #6da7ec; --highlight: #1b2a3f; }
+    :root:not([data-theme="light"]) .theme-gridshift { --accent: #3fbf8a; --highlight: #15302a; }
+    :root:not([data-theme="light"]) .theme-orbit     { --accent: #a59dff; --highlight: #211d3d; }
+    :root:not([data-theme="light"]) .theme-agentic   { --accent: #60a5fa; --highlight: #172554; }
+    :root:not([data-theme="light"]) .theme-pet       { --accent: #6ea8fe; --highlight: #0b1f3f; }
+  }
+  :root[data-theme="dark"] .theme-climate   { --accent: #6da7ec; --highlight: #1b2a3f; }
+  :root[data-theme="dark"] .theme-gridshift { --accent: #3fbf8a; --highlight: #15302a; }
+  :root[data-theme="dark"] .theme-orbit     { --accent: #a59dff; --highlight: #211d3d; }
+  :root[data-theme="dark"] .theme-agentic   { --accent: #60a5fa; --highlight: #172554; }
+  :root[data-theme="dark"] .theme-pet       { --accent: #6ea8fe; --highlight: #0b1f3f; }
+
+  /* Real screenshot in a small browser frame */
+  .shot {
+    margin: 4px 0 18px; border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; background: var(--surface);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  .shot .chrome {
+    display: flex; align-items: center; gap: 6px; padding: 8px 12px;
+    border-bottom: 1px solid var(--border); background: var(--highlight);
+    font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--muted);
+  }
+  .shot .chrome i { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+  .shot .chrome span { margin-left: 8px; letter-spacing: .04em; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .featured .viz.has-shot { align-items: center; padding: 28px; }
+  .featured .viz.has-shot .shot { margin: 0; width: 100%; }
+  .shot-note { font-size: 11px; color: var(--muted); margin: -10px 0 16px; }
+
+  /* Dagster-style lineage (OrbitWatch) */
+  .lineage {
+    margin: 8px 0 18px; border: 1px solid var(--border); border-radius: 12px; padding: 14px;
+    background-color: var(--surface);
+    background-image: radial-gradient(color-mix(in srgb, var(--accent) 22%, transparent) 1px, transparent 1px);
+    background-size: 14px 14px;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 14px;
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px;
+  }
+  .lineage .grp { display: flex; flex-direction: column; gap: 6px; }
+  .lineage .gname { color: var(--accent); letter-spacing: .1em; text-transform: uppercase; font-size: 9.5px; }
+  .lineage .asset {
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 6px; padding: 5px 7px; color: var(--text);
+    display: flex; align-items: center; gap: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .lineage .asset::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #2fa36b; flex: none; }
+
+  /* Tailwind-style dashboard sketch (Agentic AI) */
+  .tw-dash {
+    margin: 8px 0 18px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    display: grid; grid-template-columns: 92px 1fr; background: color-mix(in srgb, var(--highlight) 45%, var(--surface));
+    font-size: 11px;
+  }
+  .tw-dash nav { background: var(--surface); border-right: 1px solid var(--border); padding: 10px 8px; display: grid; gap: 4px; align-content: start; }
+  .tw-dash nav span { padding: 5px 7px; border-radius: 6px; color: var(--muted); }
+  .tw-dash nav span.on { background: var(--highlight); color: var(--accent); font-weight: 600; }
+  .tw-dash .main { padding: 10px; display: grid; gap: 8px; }
+  .tw-dash .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .tw-dash .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 7px 8px; color: var(--muted); }
+  .tw-dash .tile b { display: block; width: 26px; height: 6px; border-radius: 3px; margin-top: 5px; }
+  .tw-dash .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px; display: flex; gap: 10px; align-items: center; color: var(--muted); }
+
+  /* Bootstrap-admin sketch (Pet Adoption) */
+  .bs-admin {
+    margin: 8px 0 18px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    display: grid; grid-template-columns: 112px 1fr; font-size: 11px;
+  }
+  .bs-admin nav { background: #212529; padding: 10px 8px; display: grid; gap: 3px; align-content: start; }
+  .bs-admin nav strong { color: #fff; font-size: 11.5px; padding: 2px 6px 8px; }
+  .bs-admin nav span { color: rgba(255,255,255,.75); padding: 4px 6px; border-radius: 5px; }
+  .bs-admin nav span.on { background: rgba(255,255,255,.12); color: #fff; }
+  .bs-admin .main { background: #f8f9fa; padding: 10px; display: grid; gap: 8px; }
+  .bs-admin .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .bs-admin .bcard { background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 7px; color: #6c757d; }
+  .bs-admin .bcard b { display: block; height: 4px; border-radius: 2px; background: #0d6efd; margin-top: 6px; width: 70%; }
+  .bs-admin .bcard:nth-child(2) b { background: #198754; width: 45%; }
+  .bs-admin .bcard:nth-child(3) b { background: #ffc107; width: 60%; }
+  .bs-admin .table { background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 6px 8px; display: grid; gap: 5px; }
+  .bs-admin .table i { display: block; height: 5px; border-radius: 3px; background: #e9ecef; }
+  .bs-admin .table i:first-child { background: #ced4da; width: 60%; }
+  @media (max-width: 600px) {
+    .lineage { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tw-dash, .bs-admin { grid-template-columns: 1fr; }
+    .tw-dash nav, .bs-admin nav { display: none; }
+  }
+
   .timeline { position: relative; padding-left: 28px; }
   .timeline::before {
     content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px;
@@ -591,7 +687,7 @@
     </div>
 
     <div class="projects">
-      <article class="card featured" data-kind="sde de">
+      <article class="card featured theme-climate" data-kind="sde de">
         <div class="copy inner">
           <div class="badge-row">
             <span class="badge">01 / Featured system</span>
@@ -624,21 +720,17 @@ OWID ──────┼─→ Python ETL → PostgreSQL → FastAPI → Clien
 World Bank ┘</pre>
           </details>
         </div>
-        <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 420 280" width="100%" height="100%" fill="none">
-            <g stroke="currentColor" stroke-opacity=".12">
-              <path d="M20 40 H400 M20 90 H400 M20 140 H400 M20 190 H400 M20 240 H400"/>
-              <path d="M60 20 V260 M120 20 V260 M180 20 V260 M240 20 V260 M300 20 V260 M360 20 V260"/>
-            </g>
-            <path d="M40 210 C90 200, 120 150, 170 155 C220 160, 250 90, 300 100 C340 108, 370 70, 400 62" stroke="var(--accent)" stroke-width="2"/>
-            <path d="M40 210 C90 200, 120 150, 170 155 C220 160, 250 90, 300 100 C340 108, 370 70, 400 62 V240 H40 Z" fill="var(--accent)" fill-opacity=".12"/>
-            <text x="40" y="22" fill="currentColor" opacity=".45" font-family="JetBrains Mono, monospace" font-size="10">GHG INDEX  ·  32 COUNTRIES</text>
-          </svg>
+        <div class="viz has-shot">
+          <figure class="shot" style="margin:0">
+            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>climate-emissions-platform / dashboard</span></div>
+            <img src="assets/climate-emissions.jpg" width="800" height="766" loading="lazy"
+                 alt="The Climate Emissions Platform dashboard: Germany's greenhouse gas emissions falling from about 1,250 Mt in 1990 to 650 Mt in 2024, with a sector breakdown and a ranking of European countries by change since 1990.">
+          </figure>
         </div>
       </article>
 
       <div class="pair">
-        <article class="card" data-kind="sde">
+        <article class="card theme-gridshift" data-kind="sde">
           <div class="inner">
             <div class="badge-row">
               <span class="badge">GridShift</span>
@@ -646,12 +738,11 @@ World Bank ┘</pre>
             </div>
             <h3>Run computing when electricity is cleaner.</h3>
             <p class="sub">Shows when and where to run compute jobs on European grids for the lowest CO₂.</p>
-            <div class="grid-viz" aria-hidden="true">
-              <div class="hour"><span>02:00</span><span class="bar"><i style="left:42%"></i></span><span class="lab-r">CLEANER</span></div>
-              <div class="hour"><span>06:00</span><span class="bar"><i style="left:78%"></i></span><span class="lab-r">LOW</span></div>
-              <div class="hour"><span>10:00</span><span class="bar"><i style="left:18%"></i></span><span class="lab-r"></span></div>
-              <div class="hour"><span>14:00</span><span class="bar"><i style="left:58%"></i></span><span class="lab-r"></span></div>
-            </div>
+            <figure class="shot">
+              <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>gridshift / planner</span></div>
+              <img src="assets/gridshift.jpg" width="800" height="648" loading="lazy"
+                   alt="The GridShift web app recommending a 2-hour job run in Spain for 97% less CO2 than starting now in Germany, with a chart of grid carbon intensity for four countries.">
+            </figure>
             <div class="stats">
               <div class="stat"><b>−66%</b><span>shifting in time</span></div>
               <div class="stat"><b>−93%</b><span>time + location</span></div>
@@ -673,7 +764,7 @@ World Bank ┘</pre>
           </div>
         </article>
 
-        <article class="card" data-kind="de">
+        <article class="card theme-agentic" data-kind="de">
           <div class="inner">
             <div class="badge-row">
               <span class="badge">Agentic AI</span>
@@ -681,16 +772,21 @@ World Bank ┘</pre>
             </div>
             <h3>A multi-agent pipeline for warehouse quality.</h3>
             <p class="sub">Profiles, scores and monitors data warehouse tables, then surfaces root-cause insights.</p>
-            <div class="pipe-viz">
-              <div class="pipe">
-                <span class="node">SOURCE</span><span class="arrow">→</span>
-                <span class="node">INGEST</span><span class="arrow">→</span>
-                <span class="node">PROFILE</span><span class="arrow">→</span>
-                <span class="node active">AGENT</span><span class="arrow">→</span>
-                <span class="node">VALIDATE</span><span class="arrow">→</span>
-                <span class="node">DASHBOARD</span>
+            <div class="tw-dash" aria-hidden="true">
+              <nav><span class="on">Dashboard</span><span>Pipeline runs</span><span>Trigger</span><span>RCA insights</span></nav>
+              <div class="main">
+                <div class="tiles">
+                  <div class="tile">Success<b style="background:#22c55e"></b></div>
+                  <div class="tile">Failed<b style="background:#ef4444"></b></div>
+                  <div class="tile">Running<b style="background:#3b82f6"></b></div>
+                </div>
+                <div class="panel">
+                  <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="16" fill="none" stroke="#22c55e" stroke-width="7" stroke-dasharray="70 31"/><circle cx="22" cy="22" r="16" fill="none" stroke="#ef4444" stroke-width="7" stroke-dasharray="14 87" stroke-dashoffset="-70"/><circle cx="22" cy="22" r="16" fill="none" stroke="#3b82f6" stroke-width="7" stroke-dasharray="17 84" stroke-dashoffset="-84"/></svg>
+                  Run status · Planner → Metadata → Metrics → Scoring → RCA → Issue
+                </div>
               </div>
             </div>
+            <p class="shot-note">Sketch of the app's React + Tailwind dashboard (its pages and status colours).</p>
             <ul class="bullets">
               <li>Six LangGraph agents chained into one quality pipeline</li>
               <li>Azure App Service backend, PostgreSQL telemetry, React dashboard</li>
@@ -708,7 +804,7 @@ World Bank ┘</pre>
         </article>
       </div>
 
-      <article class="card" data-kind="de">
+      <article class="card theme-orbit" data-kind="de">
         <div class="inner">
           <div class="badge-row">
             <span class="badge">OrbitWatch</span>
@@ -716,19 +812,16 @@ World Bank ┘</pre>
           </div>
           <h3>A pipeline that tracks everything in orbit.</h3>
           <p class="sub">Snapshots every tracked satellite and debris cloud, builds the history the source doesn’t keep, and screens 19,000 orbits for close approaches.</p>
-          <div class="pipe-viz">
-            <div class="pipe">
-              <span class="node">CELESTRAK</span><span class="arrow">→</span>
-              <span class="node">SNAPSHOT</span><span class="arrow">→</span>
-              <span class="node">PARQUET</span><span class="arrow">→</span>
-              <span class="node active">DBT</span><span class="arrow">→</span>
-              <span class="node">SGP4 SCREEN</span><span class="arrow">→</span>
-              <span class="node">DUCKDB</span>
-            </div>
+          <div class="lineage" aria-label="Dagster asset lineage of the pipeline">
+            <div class="grp"><span class="gname">ingest</span><span class="asset">gp_snapshot</span><span class="asset">satcat_snapshot</span></div>
+            <div class="grp"><span class="gname">staging</span><span class="asset">stg_gp_elements</span><span class="asset">stg_satcat_daily</span></div>
+            <div class="grp"><span class="gname">marts</span><span class="asset">dim_object_history</span><span class="asset">fct_orbit_changes</span><span class="asset">fct_reentries</span></div>
+            <div class="grp"><span class="gname">compute</span><span class="asset">close_approaches</span><span class="asset">mart_close_approaches</span></div>
           </div>
+          <p class="shot-note">Asset groups as they appear in its Dagster lineage view (16 assets, 23 checks).</p>
           <div class="stats">
-            <div class="stat"><b data-count="35214">0</b><span>objects in orbit</span></div>
-            <div class="stat"><b data-count="19301">0</b><span>orbits screened</span></div>
+            <div class="stat"><b>35,214</b><span>objects in orbit</span></div>
+            <div class="stat"><b>19,301</b><span>orbits screened</span></div>
             <div class="stat"><b data-count="34">0</b><span>tests</span></div>
           </div>
           <ul class="bullets">
@@ -755,7 +848,7 @@ World Bank ┘</pre>
         </div>
       </article>
 
-      <article class="card" data-kind="sde">
+      <article class="card theme-pet" data-kind="sde">
         <div class="inner">
           <div class="badge-row">
             <span class="badge">Pet Adoption System</span>
@@ -763,11 +856,14 @@ World Bank ┘</pre>
           </div>
           <h3>Full-stack application for shelter operations.</h3>
           <p class="sub">Demonstrates API design, database modelling and application architecture — breadth without diluting the systems story.</p>
-          <div class="product-viz" aria-hidden="true">
-            <div><b>Animals</b>CRUD + records</div>
-            <div><b>Adoptions</b>Trend analytics</div>
-            <div><b>Volunteers</b>18 skill types</div>
+          <div class="bs-admin" aria-hidden="true">
+            <nav><strong>PASMS</strong><span class="on">Dashboard</span><span>Animals</span><span>Adopters</span><span>Adoptions</span><span>Medical</span><span>Volunteers</span><span>Charts</span></nav>
+            <div class="main">
+              <div class="cards"><div class="bcard">Animals<b></b></div><div class="bcard">Adoptions<b></b></div><div class="bcard">Volunteers<b></b></div></div>
+              <div class="table"><i></i><i></i><i></i><i></i></div>
+            </div>
           </div>
+          <p class="shot-note">Sketch of the app's Bootstrap 5 admin layout (its real pages).</p>
           <ul class="bullets">
             <li>FastAPI + MongoDB with CRUD across six collections and generated OpenAPI docs</li>
             <li>Bootstrap 5 dashboard with Chart.js for adoption trends and medical visits</li>
