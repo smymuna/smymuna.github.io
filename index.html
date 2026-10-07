@@ -585,9 +585,9 @@
     <h2>Things I’ve built.</h2>
     <p class="sec-p">Selected software and data systems spanning APIs, pipelines, cloud platforms and climate technology.</p>
     <div class="filters" role="group" aria-label="Filter projects">
-      <button class="filter" data-filter="all" aria-pressed="true">ALL <b>04</b></button>
+      <button class="filter" data-filter="all" aria-pressed="true">ALL <b>05</b></button>
       <button class="filter" data-filter="sde" aria-pressed="false">SOFTWARE <b>03</b></button>
-      <button class="filter" data-filter="de" aria-pressed="false">DATA <b>02</b></button>
+      <button class="filter" data-filter="de" aria-pressed="false">DATA <b>03</b></button>
     </div>
 
     <div class="projects">
@@ -708,11 +708,58 @@ World Bank ┘</pre>
         </article>
       </div>
 
+      <article class="card" data-kind="de">
+        <div class="inner">
+          <div class="badge-row">
+            <span class="badge">OrbitWatch</span>
+            <span class="kind">04 · Data engineering</span>
+          </div>
+          <h3>A pipeline that tracks everything in orbit.</h3>
+          <p class="sub">Snapshots every tracked satellite and debris cloud, builds the history the source doesn’t keep, and screens 19,000 orbits for close approaches.</p>
+          <div class="pipe-viz">
+            <div class="pipe">
+              <span class="node">CELESTRAK</span><span class="arrow">→</span>
+              <span class="node">SNAPSHOT</span><span class="arrow">→</span>
+              <span class="node">PARQUET</span><span class="arrow">→</span>
+              <span class="node active">DBT</span><span class="arrow">→</span>
+              <span class="node">SGP4 SCREEN</span><span class="arrow">→</span>
+              <span class="node">DUCKDB</span>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat"><b data-count="35214">0</b><span>objects in orbit</span></div>
+            <div class="stat"><b data-count="19301">0</b><span>orbits screened</span></div>
+            <div class="stat"><b data-count="34">0</b><span>tests</span></div>
+          </div>
+          <ul class="bullets">
+            <li>Dagster software-defined assets with dbt on DuckDB; dbt tests run as asset checks</li>
+            <li>Type 2 history built from immutable snapshots, manoeuvre and re-entry detection</li>
+            <li>SGP4 + KD-tree close-approach screening, verified against brute-force propagation</li>
+            <li>Daily GitHub Actions run publishes each snapshot as a release, so history grows every day</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Dagster</span><span class="tag">dbt</span><span class="tag">DuckDB</span><span class="tag">Parquet</span><span class="tag">GitHub Actions</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/smymuna/orbitwatch">Source ↗</a>
+            <a href="https://github.com/smymuna/orbitwatch/tree/main/docs/adr">Design ↗</a>
+          </div>
+          <details class="arch">
+            <summary>Inspect the path</summary>
+            <pre>CelesTrak (every 6 h) → raw/ + bronze/ Parquet
+                 ↓
+     dbt: staging → SCD2 history → marts
+                 ↓
+     SGP4 + KD-tree screening → close approaches</pre>
+          </details>
+        </div>
+      </article>
+
       <article class="card" data-kind="sde">
         <div class="inner">
           <div class="badge-row">
             <span class="badge">Pet Adoption System</span>
-            <span class="kind">04 · Product engineering</span>
+            <span class="kind">05 · Product engineering</span>
           </div>
           <h3>Full-stack application for shelter operations.</h3>
           <p class="sub">Demonstrates API design, database modelling and application architecture — breadth without diluting the systems story.</p>
