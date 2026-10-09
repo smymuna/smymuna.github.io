@@ -7,7 +7,7 @@
 <meta name="description" content="Mymuna Sultana builds backend services, APIs and reliable data pipelines — with a growing focus on climate, energy and infrastructure. Relocating from Virginia to Germany / EU.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F6F3EE;
@@ -582,6 +582,7 @@
     .reveal { opacity: 1; transform: none; }
   }
 </style>
+<link rel="stylesheet" href="assets/alive.css">
 </head>
 <body>
 <aside class="sys-rail" aria-hidden="true">
@@ -1055,5 +1056,9 @@ World Bank ┘</pre>
   }, { threshold: 0.6 });
   document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 </script>
+<!-- Interaction layer: GSAP 3 (springs, Flip) + assets/alive.js -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Flip.min.js" defer></script>
+<script src="assets/alive.js" defer></script>
 </body>
 </html>

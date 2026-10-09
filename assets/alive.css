@@ -1,0 +1,109 @@
+/* alive.css — the "pet it and it reacts" layer on top of the Signal/System design.
+   Everything here is decorative and switches off for reduced motion or coarse pointers. */
+
+/* Expressive variable display font for the big headings (weight animates per letter). */
+h1, .display {
+  font-family: "Bricolage Grotesque", Inter, system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+h1 .ch {
+  display: inline-block;
+  font-variation-settings: "wght" var(--w, 600);
+  transition: font-variation-settings .35s cubic-bezier(.22, 1, .36, 1);
+  will-change: font-variation-settings;
+}
+h1 .ch.sp { width: .28em; }
+
+/* Scroll progress */
+.alive-progress {
+  position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 60;
+  background: var(--accent); transform-origin: 0 50%; transform: scaleX(0);
+  pointer-events: none;
+}
+
+/* Cursor ring (follows with a lag; the native cursor stays visible) */
+.alive-cursor {
+  position: fixed; left: 0; top: 0; z-index: 70; pointer-events: none;
+  width: 28px; height: 28px; margin: -14px 0 0 -14px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  transition: width .3s cubic-bezier(.22, 1, .36, 1), height .3s cubic-bezier(.22, 1, .36, 1),
+              margin .3s cubic-bezier(.22, 1, .36, 1), background-color .3s, opacity .3s;
+  opacity: 0;
+}
+.alive-cursor.on { opacity: 1; }
+.alive-cursor.big {
+  width: 56px; height: 56px; margin: -28px 0 0 -28px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.alive-cursor.press { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
+
+/* 3D tilt on project cards */
+.projects, .pair { perspective: 1400px; }
+.projects .card { transform-style: preserve-3d; will-change: transform; }
+
+/* Click sparks */
+.alive-spark {
+  position: fixed; z-index: 80; width: 6px; height: 6px; margin: -3px 0 0 -3px;
+  border-radius: 50%; background: var(--spark, var(--accent)); pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Byte, the site's pup                                                                  */
+/* ---------------------------------------------------------------------------------- */
+.pup {
+  position: fixed; right: 22px; bottom: -14px; z-index: 55;
+  width: 96px; height: 96px; padding: 0; border: 0; background: none; cursor: grab;
+  color: var(--accent);
+  -webkit-tap-highlight-color: transparent;
+}
+.pup:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 50%; }
+.pup svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.pup .happy, .pup .closed, .pup .tongue, .pup .blush { opacity: 0; }
+.pup[data-mood="happy"] .happy,
+.pup[data-mood="happy"] .tongue,
+.pup[data-mood="happy"] .blush { opacity: 1; }
+.pup[data-mood="happy"] .open { opacity: 0; }
+.pup[data-mood="sleep"] .closed { opacity: 1; }
+.pup[data-mood="sleep"] .open { opacity: 0; }
+
+.pup-hide {
+  position: fixed; right: 14px; bottom: 74px; z-index: 56;
+  width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--surface); color: var(--muted); font-size: 13px; line-height: 1;
+  cursor: pointer; opacity: 0; transition: opacity .25s;
+}
+.pup:hover + .pup-hide, .pup-hide:hover, .pup-hide:focus-visible { opacity: 1; }
+
+.pup-bubble {
+  position: fixed; right: 112px; bottom: 58px; z-index: 56; max-width: 220px;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border);
+  border-radius: 14px 14px 4px 14px; padding: 8px 12px; font-size: 13px; line-height: 1.35;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 18%, transparent);
+  pointer-events: none; opacity: 0; transform: translateY(6px) scale(.96);
+  transition: opacity .25s, transform .35s cubic-bezier(.34, 1.56, .64, 1);
+}
+.pup-bubble.show { opacity: 1; transform: none; }
+
+.pup-float {
+  position: fixed; z-index: 57; pointer-events: none; font-size: 16px; line-height: 1;
+  color: var(--accent); font-family: "JetBrains Mono", monospace; font-weight: 600;
+}
+
+.pup-return {
+  font: inherit; color: var(--accent); background: none; border: 0; padding: 0;
+  cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .pup { width: 72px; height: 72px; right: 12px; bottom: -10px; }
+  .pup-bubble { right: 88px; bottom: 44px; max-width: 180px; }
+  .pup-hide { right: 6px; bottom: 54px; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1 .ch { transition: none; }
+  .alive-cursor, .alive-progress { display: none; }
+}
+
+/* View-transition theme switch: the new theme grows from the toggle (see alive.js). */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
